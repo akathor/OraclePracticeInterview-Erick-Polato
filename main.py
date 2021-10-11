@@ -1,13 +1,11 @@
-from Classes.Fruit import Fruit
-from Classes.FruitType import FruitType
-from Classes.Box import Box
+
 from Utils.List_Reader import *
 from Utils.Box_Utilities import *
 
 
 ##### Initial lists and fee #####
 max_box_weight = 1000      # maximum box weight in grams
-packaging_fee = 1.10
+package_fee = 1.10
 fruit_types_list = [
     {"name": "banana", "price": 2.95},
     {"name": "pear", "price": 3.95},
@@ -57,18 +55,11 @@ fruit_list = [
 ##### Transforming json lists into instances lists #####
 fruit_types = instance_fruit_types_list(fruit_types_list)
 
-# Uncomment to print list
-#for f in fruit_types:
-#    print(f)
+fruits = instance_fruit_list(fruit_list, fruit_types)
 
-fruits = instance_fruit_list(fruit_list)
-
-# Uncomment to print list
-#for f in fruits:
-#    print(f)
 
 ##### Packaging #####
 
-boxes = package_into_boxes(fruits)
+boxes = package_into_boxes(fruits, max_box_weight, package_fee)
 
-print_boxes(boxes, packaging_fee)
+print_boxes(boxes)
