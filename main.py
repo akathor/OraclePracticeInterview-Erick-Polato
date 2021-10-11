@@ -1,6 +1,3 @@
-from Classes.Fruit import Fruit
-from Classes.FruitType import FruitType
-from Classes.Box import Box
 from Utils.List_Reader import *
 from Utils.Box_Utilities import *
 
@@ -57,18 +54,10 @@ fruit_list = [
 ##### Transforming json lists into instances lists #####
 fruit_types = instance_fruit_types_list(fruit_types_list)
 
-# Uncomment to print list
-#for f in fruit_types:
-#    print(f)
+fruits = instance_fruit_list(fruit_list, fruit_types)
 
-fruits = instance_fruit_list(fruit_list)
+##### Packaging and printing #####
 
-# Uncomment to print list
-#for f in fruits:
-#    print(f)
+boxes = package_into_boxes(fruits, max_box_weight, packaging_fee)
 
-##### Packaging #####
-
-boxes = package_into_boxes(fruits)
-
-print_boxes(boxes, packaging_fee)
+print_boxes(boxes)

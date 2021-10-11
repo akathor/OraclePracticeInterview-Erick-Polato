@@ -1,30 +1,32 @@
 from Classes.Box import Box
 
 
-def package_into_boxes(fruits):
-    boxes = [Box()]
-    i = 0
+def package_into_boxes(fruits, max_box_weight, package_fee):
+    boxes = [Box(max_box_weight, package_fee)]
+    current_box = 0
     for f in fruits:
-        if boxes[i].get_box_weight() + f.get_weight() > 1000:
-            i += 1
-            boxes.append(Box())
-        boxes[i].insert_fruit(f)
+        if boxes[current_box].get_box_weight() + f.get_weight() > boxes[current_box].get_box_max_weight():
+            boxes[current_box].close_box()
+            current_box += 1
+            boxes.append(Box(max_box_weight, package_fee))
+        boxes[current_box].insert_fruit(f)
+    boxes[current_box].close_box()
     return boxes
 
-def print_boxes(boxes, packaging_fee):
-    i = 1
+
+def print_boxes(boxes):
+    current_box = 1
     for b in boxes:
-        print("BOX #{}".format(i))
+        print("BOX #{}".format(current_box))
         print('_____________________________')
         print('Box Weight: {}'.format(b.get_box_weight()))
-        print('Box fruits price: {} €'.format(b.get_box_price()))
-        b.add_fee(packaging_fee)
+        print('Box fruits price: {} €'.format(b.get_box_price_no_fee()))
         print('Box price + fee: {} €'.format(b.get_box_price()))
         print('_____________________________')
         print('List of fruits:')
         for f in b.fruits:
             print(f)
-        i += 1
+        current_box += 1
         print('_____________________________')
         print('\n')
     return

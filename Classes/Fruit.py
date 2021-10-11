@@ -10,7 +10,8 @@ class Fruit:
         return self.FruitType.get_name()
 
     def get_price(self):
-        price = self.weight * self.FruitType.get_price() / 1000
+        gram_to_kg = 1000
+        price = self.weight * self.FruitType.get_price() / gram_to_kg
         return price
 
     def __str__(self):
