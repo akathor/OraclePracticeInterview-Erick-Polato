@@ -11,6 +11,7 @@ def package_into_boxes(fruits):
         boxes[i].insert_fruit(f)
     return boxes
 
+
 def print_boxes(boxes, packaging_fee):
     i = 1
     for b in boxes:
